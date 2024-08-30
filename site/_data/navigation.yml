@@ -1,0 +1,12 @@
+logo_image: '/images/YK_Logo.png' # You can add own logo. For example '/images/logo.png'.
+
+menu__settings:
+  menu__items:
+    - title: 'Home'
+      url: '/'
+    - title: 'Projects'
+      url: '/projects/'
+    - title: 'Blog'
+      url: '/blog/'
+    - title: 'About'
+      url: '/about/'
