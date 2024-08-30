@@ -1,1 +1,1 @@
-Sitemap: https://youssef-khaledmo.github.io/sitemap.xml
+Sitemap: https://youssef-khaledmo.github.io/_site/sitemap.xml
