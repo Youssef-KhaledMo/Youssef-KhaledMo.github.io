@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Regression Techniques for Car Price Prediction</title>
+  <meta name='description' content='My personal portfolio website'>
+
+  <link rel="canonical" href="http://localhost:4000/blog/regression-techniques-for-car-price-prediction">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Regression Techniques for Car Price Prediction – Home">
+  <meta name="twitter:description" content="In this post, we’ll dive into the process of analyzing and predicting car prices using machine learning techniques. We’ll explore how to clean and preprocess data, select the most relevant features, and apply both linear and polynomial regression models.
+">
+  <meta name="twitter:image:src" content="http://localhost:4000/images/car_price_analysis.jpg">
+
+  <!-- Facebook OpenGraph -->
+  <meta property="og:title" content="Regression Techniques for Car Price Prediction – Home">
+  <meta property="og:description" content="In this post, we’ll dive into the process of analyzing and predicting car prices using machine learning techniques. We’ll explore how to clean and preprocess data, select the most relevant features, and apply both linear and polynomial regression models.
+">
+  <meta property="og:image" content="http://localhost:4000/images/car_price_analysis.jpg">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+
+  <!-- Ionicons -->
+  <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/main.css">
+</head>
+
+<body>
+
+    
+
+    <!-- begin header -->
+<header class="c-header">
+  <div class="container">
+    <div class="row">
+      <div class="c-header__inner">
+
+        <div class="logo">
+          <a class="logo__link" href="/">
+          
+            <img class="logo__image" src="/images/YK_Logo.png" alt="Home">
+          
+          </a>
+        </div>
+
+        <nav class="main-nav">
+          <div class="main-nav__box">
+
+            <div class="nav__icon-close">
+              <i class="ion ion-md-close"></i>
+            </div>
+
+            <div class="nav__title">Menu</div>
+
+              <ul class="nav__list list-reset">
+
+              
+                
+                <li class="nav__item">
+                  <a href="/" class="nav__link">Home</a>
+                </li>
+                
+              
+                
+                <li class="nav__item">
+                  <a href="/projects/" class="nav__link">Projects</a>
+                </li>
+                
+              
+                
+                <li class="nav__item">
+                  <a href="/blog/" class="nav__link">Blog</a>
+                </li>
+                
+              
+                
+                <li class="nav__item">
+                  <a href="/about/" class="nav__link">About</a>
+                </li>
+                
+              
+
+            </ul>
+          </div>
+
+          <!--bookshop-live meta(version="3.10.1" baseurl="" title="Vonge") -->
+<!--bookshop-live name(social-link.jekyll.html) params() context() -->
+
+<div class="social">
+  <ul class="social__list list-reset">
+    
+    <li class="social__item">
+      <a class="social__link" href="https://www.linkedin.com/in/youssef-khaled-mohamed/" target="_blank" rel="noopener" aria-label="linkedin icon"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://github.com/Youssef-KhaledMo" target="_blank" rel="noopener" aria-label="github icon"><i class="ion ion-logo-github"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://wa.me/201110958262" target="_blank" rel="noopener" aria-label="whatsapp icon"><i class="ion ion-logo-whatsapp"></i></a>
+    </li>
+    
+  </ul>
+</div>
+
+<!--bookshop-live end-->
+        </nav>
+
+        <div class="nav-button">
+          <i class="nav__icon nav__icon-menu ion ion-md-menu"></i>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</header>
+<!-- end header -->
+
+    <div class="post-top">
+  <div class="container">
+    <div class="row">
+
+      
+      <div class="col col-6 col-d-12">
+        <div class="post-image">
+          <img loading="lazy" src="/images/car_price_analysis.jpg" alt="Regression Techniques for Car Price Prediction">
+        </div>
+      </div>
+      
+
+      <div class="col col-6 col-d-12">
+        <div class="post__info">
+
+          
+          <div class="post-tags">
+            
+              <a href="/tag/machine learning" class="post-tags__tag">machine learning</a>
+            
+              <a href="/tag/data science" class="post-tags__tag">data science</a>
+            
+              <a href="/tag/regression" class="post-tags__tag">regression</a>
+            
+          </div>
+          
+
+
+          <h1 class="post__title">Regression Techniques for Car Price Prediction</h1>
+
+          <div class="post__meta">
+            <div class="post__author-image">
+              <img loading="lazy" src="/images/avatar.jpg" alt="Youssef Khaled">
+            </div>
+
+            <div class="post__meta-bottom">
+              <div class="post__author">Youssef Khaled</div>
+              <time class="post__date" datetime="2024-08-11T00:00:00+03:00">11 Aug 2024</time>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- begin post -->
+<div class="container animate">
+
+  <article class="post">
+
+    <div class="post__content">
+      <p>In this post, we’ll dive into the process of analyzing and predicting car prices using machine learning techniques. We’ll explore how to clean and preprocess data, select the most relevant features, and apply both linear and polynomial regression models.</p>
+
+<h3 id="data-loading-and-initial-exploration">Data Loading and Initial Exploration</h3>
+
+<p>We begin by loading the car price dataset and taking a quick look at the first few rows to understand the structure of the data.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">pandas</span> <span class="k">as</span> <span class="n">pd</span> <span class="c1"># type: ignore
+</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nf">read_csv</span><span class="p">(</span><span class="sh">'</span><span class="s">CarPrice_Assignment.csv</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">data</span><span class="p">.</span><span class="nf">head</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h3 id="data-cleaning">Data Cleaning</h3>
+
+<p>To prepare the data for analysis, we drop irrelevant columns (such as <code class="language-plaintext highlighter-rouge">car_ID</code>) and check the dataset’s structure to ensure everything is in order.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data</span><span class="p">.</span><span class="nf">drop</span><span class="p">([</span><span class="sh">'</span><span class="s">car_ID</span><span class="sh">'</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">data</span><span class="p">.</span><span class="nf">info</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>We also check for duplicate rows, which could distort our model’s accuracy.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data</span><span class="p">.</span><span class="nf">duplicated</span><span class="p">().</span><span class="nf">sum</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h3 id="correlation-analysis">Correlation Analysis</h3>
+
+<p>Next, we analyze the correlation between numeric features and the target variable, <code class="language-plaintext highlighter-rouge">price</code>. This helps in identifying the most influential features for car price prediction.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">seaborn</span> <span class="k">as</span> <span class="n">sns</span> <span class="c1"># type: ignore
+</span><span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span> <span class="c1"># type: ignore
+</span>
+<span class="c1"># Select numeric features
+</span><span class="n">numeric_features</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="nf">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="sh">'</span><span class="s">float64</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">int64</span><span class="sh">'</span><span class="p">])</span>
+
+<span class="c1"># Compute correlation matrix
+</span><span class="n">correlation_matrix</span> <span class="o">=</span> <span class="n">numeric_features</span><span class="p">.</span><span class="nf">corr</span><span class="p">()</span>
+
+<span class="c1"># Plot heatmap
+</span><span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">sns</span><span class="p">.</span><span class="nf">heatmap</span><span class="p">(</span><span class="n">correlation_matrix</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="sh">'</span><span class="s">coolwarm</span><span class="sh">'</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="sh">'</span><span class="s">.2f</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="sh">'</span><span class="s">Correlation Matrix</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+
+<span class="c1"># Save the 15 most correlated features with price
+</span><span class="n">top_features_correlation</span> <span class="o">=</span> <span class="n">correlation_matrix</span><span class="p">[</span><span class="sh">'</span><span class="s">price</span><span class="sh">'</span><span class="p">].</span><span class="nf">abs</span><span class="p">().</span><span class="nf">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)[:</span><span class="mi">15</span><span class="p">]</span>
+</code></pre></div></div>
+
+<h3 id="feature-selection-with-random-forest">Feature Selection with Random Forest</h3>
+
+<p>To further refine our feature selection, we use a Random Forest model to evaluate the importance of each feature.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span> <span class="c1"># type: ignore
+</span><span class="kn">from</span> <span class="n">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span> <span class="c1"># type: ignore
+</span><span class="kn">from</span> <span class="n">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span> <span class="c1"># type: ignore
+</span>
+<span class="c1"># Preprocessing categorical features
+</span><span class="n">data_encoded</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="nf">copy</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">data</span><span class="p">.</span><span class="nf">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="sh">'</span><span class="s">object</span><span class="sh">'</span><span class="p">]).</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">data_encoded</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="nc">LabelEncoder</span><span class="p">().</span><span class="nf">fit_transform</span><span class="p">(</span><span class="n">data_encoded</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+
+<span class="c1"># Separate features and target
+</span><span class="n">X</span> <span class="o">=</span> <span class="n">data_encoded</span><span class="p">.</span><span class="nf">drop</span><span class="p">(</span><span class="sh">'</span><span class="s">price</span><span class="sh">'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data_encoded</span><span class="p">[</span><span class="sh">'</span><span class="s">price</span><span class="sh">'</span><span class="p">]</span>
+
+<span class="c1"># Split the data
+</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="nf">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Train Random Forest model
+</span><span class="n">rf</span> <span class="o">=</span> <span class="nc">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">rf</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Feature importance
+</span><span class="n">importances</span> <span class="o">=</span> <span class="n">rf</span><span class="p">.</span><span class="n">feature_importances_</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">X</span><span class="p">.</span><span class="n">columns</span>
+<span class="n">feature_importance_df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nc">DataFrame</span><span class="p">({</span><span class="sh">'</span><span class="s">Feature</span><span class="sh">'</span><span class="p">:</span> <span class="n">features</span><span class="p">,</span> <span class="sh">'</span><span class="s">Importance</span><span class="sh">'</span><span class="p">:</span> <span class="n">importances</span><span class="p">}).</span><span class="nf">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="sh">'</span><span class="s">Importance</span><span class="sh">'</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+<span class="c1"># Plot feature importance
+</span><span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">sns</span><span class="p">.</span><span class="nf">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="sh">'</span><span class="s">Importance</span><span class="sh">'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="sh">'</span><span class="s">Feature</span><span class="sh">'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">feature_importance_df</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="sh">'</span><span class="s">Feature Importance from Random Forest</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+
+<span class="c1"># Save the 15 most important features
+</span><span class="n">top_features_importance</span> <span class="o">=</span> <span class="n">feature_importance_df</span><span class="p">[</span><span class="sh">'</span><span class="s">Feature</span><span class="sh">'</span><span class="p">].</span><span class="nf">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="regression-models-linear-and-polynomial">Regression Models: Linear and Polynomial</h3>
+
+<p>With our selected features, we move on to building and evaluating regression models. First, we implement a linear regression model:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span> <span class="c1"># type: ignore
+</span><span class="kn">from</span> <span class="n">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span> <span class="c1"># type: ignore
+</span>
+<span class="c1"># Train linear regression model
+</span><span class="n">model</span> <span class="o">=</span> <span class="nc">LinearRegression</span><span class="p">()</span>
+<span class="n">model</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Make predictions
+</span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Calculate the Mean Squared Error
+</span><span class="n">mse</span> <span class="o">=</span> <span class="nf">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+<span class="c1"># Calculate the R-squared value
+</span><span class="n">r2</span> <span class="o">=</span> <span class="nf">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+<span class="c1"># Plot the predicted vs actual values
+</span><span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">scatter</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">plot</span><span class="p">([</span><span class="nf">min</span><span class="p">(</span><span class="n">y_test</span><span class="p">),</span> <span class="nf">max</span><span class="p">(</span><span class="n">y_test</span><span class="p">)],</span> <span class="p">[</span><span class="nf">min</span><span class="p">(</span><span class="n">y_pred</span><span class="p">),</span> <span class="nf">max</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)],</span> <span class="n">color</span><span class="o">=</span><span class="sh">'</span><span class="s">red</span><span class="sh">'</span><span class="p">)</span>  <span class="c1"># Diagonal line
+</span><span class="n">plt</span><span class="p">.</span><span class="nf">xlabel</span><span class="p">(</span><span class="sh">'</span><span class="s">Actual</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">ylabel</span><span class="p">(</span><span class="sh">'</span><span class="s">Predicted</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="sh">'</span><span class="s">Actual vs Predicted (Linear Regression)</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>To capture potential non-linear relationships, we also fit a polynomial regression model:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span> <span class="c1"># type: ignore
+</span>
+<span class="c1"># Create polynomial features
+</span><span class="n">poly_features</span> <span class="o">=</span> <span class="nc">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">X_train_poly</span> <span class="o">=</span> <span class="n">poly_features</span><span class="p">.</span><span class="nf">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_test_poly</span> <span class="o">=</span> <span class="n">poly_features</span><span class="p">.</span><span class="nf">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Fit the polynomial regression model
+</span><span class="n">poly_model</span> <span class="o">=</span> <span class="nc">LinearRegression</span><span class="p">()</span>
+<span class="n">poly_model</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="n">X_train_poly</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Make predictions using the polynomial model
+</span><span class="n">y_pred_poly</span> <span class="o">=</span> <span class="n">poly_model</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">X_test_poly</span><span class="p">)</span>
+
+<span class="c1"># Calculate the mean squared error for polynomial regression
+</span><span class="n">mse_poly</span> <span class="o">=</span> <span class="nf">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_poly</span><span class="p">)</span>
+
+<span class="c1"># Calculate the R-squared value for polynomial regression
+</span><span class="n">r2_poly</span> <span class="o">=</span> <span class="nf">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_poly</span><span class="p">)</span>
+
+<span class="c1"># Plot the predicted vs actual values for polynomial regression
+</span><span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">scatter</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_poly</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">plot</span><span class="p">([</span><span class="nf">min</span><span class="p">(</span><span class="n">y_test</span><span class="p">),</span> <span class="nf">max</span><span class="p">(</span><span class="n">y_test</span><span class="p">)],</span> <span class="p">[</span><span class="nf">min</span><span class="p">(</span><span class="n">y_pred_poly</span><span class="p">),</span> <span class="nf">max</span><span class="p">(</span><span class="n">y_pred_poly</span><span class="p">)],</span> <span class="n">color</span><span class="o">=</span><span class="sh">'</span><span class="s">red</span><span class="sh">'</span><span class="p">)</span>  <span class="c1"># Diagonal line
+</span><span class="n">plt</span><span class="p">.</span><span class="nf">xlabel</span><span class="p">(</span><span class="sh">'</span><span class="s">Actual</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">ylabel</span><span class="p">(</span><span class="sh">'</span><span class="s">Predicted</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="sh">'</span><span class="s">Actual vs Predicted (Polynomial Regression)</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>Through this analysis, we demonstrated how to effectively select features and apply regression models to predict car prices. The use of both linear and polynomial regression models allows for a comprehensive evaluation of the data, ensuring that the final model captures the underlying patterns accurately.</p>
+
+<p>For the complete code and further details, you can check out the <a href="https://github.com/Youssef-KhaledMo/Car-Price-Prediction">GitHub repository</a>.</p>
+
+    </div>
+
+    <div class="post__share">
+  <div class="share__head">
+    <div class="share__title">Share this Post</div>
+  </div>
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__twitter"
+        href="https://twitter.com/intent/tweet?text=Regression%20Techniques%20for%20Car%20Price%20Prediction&url=http://localhost:4000/blog/regression-techniques-for-car-price-prediction"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__facebook"
+        href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/blog/regression-techniques-for-car-price-prediction"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=http://localhost:4000/blog/regression-techniques-for-car-price-prediction&amp;media=http://localhost:4000/images/car_price_analysis.jpg&amp;description=Regression%20Techniques%20for%20Car%20Price%20Prediction"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" rel="nofollow"><i class="ion ion-logo-pinterest"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/blog/regression-techniques-for-car-price-prediction&title=Regression%20Techniques%20for%20Car%20Price%20Prediction&summary=&source=Vonge"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
+  </ul>
+</div>
+
+  </article>
+</div>
+<!-- end post -->
+
+<div class="container">
+  <div class="row">
+    <div class="col col-10 col-d-12 push-d-0 push-1">
+      <div class="post__navigation animate">
+  
+  <a class="post__prev" href="/blog/enhancing-predictive-models-with-feature-selection-techniques">
+    <div class="prev__image">
+      <img loading="lazy" src="/images/feature-selection.jpg" alt="Regression Techniques for Car Price Prediction">
+    </div>
+    <div class="prev__box">
+      <span class="post__nav post__nav__prev">Prev post</span>
+      <h2 class="post__nav__title">Enhancing Predictive Models with Feature Selection Techniques</h2>
+    </div>
+  </a>
+  
+
+  
+</div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!-- begin related posts -->
+<div class="container">
+  <section class="related-posts is-related animate">
+    <div class="row">
+      <div class="col col-12">
+        <div class="container__inner">
+          <div class="section__info">
+            <div class="section__head">
+              <h2 class="section__title">You may also like</h2>
+              <a class="section__link" href="/blog">
+                
+                
+                  
+                    <a href="/tags#machine learning" class="section__link related-tag">See all<span> machine learning</span> <i class="ion ion-md-arrow-forward"></i></a>
+                  
+                
+                  
+                
+                  
+                
+              
+              </a>
+            </div>
+          </div>
+          <div class="row">
+
+          
+            
+            
+      
+            
+      
+            
+            
+            
+            
+      
+            
+      
+            
+
+              <div class="article col col-4 col-d-6 col-t-12">
+                <div class="article__inner">
+              
+                  
+                  <div class="image-wrap">
+                    <a class="article__image" href="/blog/enhancing-predictive-models-with-feature-selection-techniques">
+                      <img loading="lazy" src="/images/feature-selection.jpg" alt="Enhancing Predictive Models with Feature Selection Techniques">
+                    </a>
+                  </div>
+                  
+              
+                  <div class="article__content">
+              
+                    
+                    <div class="article-tags__box">
+                      
+                      <a href="/tag/machine learning" class="article__tag">machine learning</a>
+                      
+                      <a href="/tag/feature selection" class="article__tag">feature selection</a>
+                      
+                      <a href="/tag/data science" class="article__tag">data science</a>
+                      
+                    </div>
+                    
+              
+                    <h2 class="article__title">
+                      <a href="/blog/enhancing-predictive-models-with-feature-selection-techniques">Enhancing Predictive Models with Feature Selection Techniques</a>
+                    </h2>
+              
+                    <p class="article__excerpt">
+                      In machine learning, selecting the right features can significantly impact the performance of your model. This blog p...
+                    </p>
+              
+                    <div class="article__meta">
+                      <div class="article__author-image">
+                        <img loading="lazy" src="/images/avatar.jpg" alt="Youssef Khaled">
+                      </div>
+                      <div class="article-info">
+                        <div class="article__author-name">Youssef Khaled</div>
+                        <span class="article__date"><time datetime="2024-08-06T00:00:00+03:00">06 Aug 2024</time></span>
+                      </div>
+                    </div>
+              
+                  </div>
+                </div>
+              </div>
+
+            
+                
+              
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- end related posts -->
+
+
+
+
+<!--bookshop-live meta(version="3.10.1" baseurl="" title="Vonge") -->
+<!--bookshop-live name(newsletter/newsletter.jekyll.html) params(newsletter_title=site.data.newsletter.newsletter_title
+  newsletter_description=site.data.newsletter.newsletter_description
+  newsletter_identifier=site.data.newsletter.newsletter_identifier
+  newsletter_button=site.data.newsletter.newsletter_button) context() -->
+<!-- begin subscribe -->
+
+<section class="c-subscribe section">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+
+        <div class="c-subscribe__inner">
+          <div class="c-subscribe__info">
+            <h3 class="c-subscribe__title">Join my mailing list</h3>
+            <div class="c-subscribe__subtitle">
+              <span id="ityped"></span>
+            </div>
+          </div>
+
+          <form class="c-subscribe__form validate" action="//frnla.us6.list-manage.com/subscribe/post?u=6314d69a3f315af7ce3fb00a0&amp;id=3038727cc3"
+            method="POST" id="membedded-subscribe-form" name="membedded-subscribe-form" target="_blank" novalidate>
+            <label class="screen-reader-text" for="mce-EMAIL">Email address</label>
+            <input class="c-subscribe__form-email required email" id="mce-EMAIL" type="text" name="EMAIL" placeholder="Your email address">
+            <button class="c-button c-button--primary c-button--large" id="membedded-subscribe" type="submit" name="subscribe">Subscribe</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end subscribe -->
+
+<script>
+  var itype_text = ['Get inspiration, updates and, cool stuff!'];
+</script>
+<!--bookshop-live end-->
+
+    <!--
+        Bookshop components are accessed using the bookshop tag,
+        using the same syntax as the standard Jekyll include tag.
+    -->
+    <!--bookshop-live meta(version="3.10.1" baseurl="" title="Vonge") -->
+<!--bookshop-live name(page.jekyll.html) params(content_blocks=page.content_blocks page_theme=page.page_theme) context() -->
+
+<!--bookshop-live end-->
+
+    <div class="top" title="Top"><i class="ion ion-ios-arrow-up"></i></div>
+
+    <!-- begin footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+
+        <!--bookshop-live meta(version="3.10.1" baseurl="" title="Vonge") -->
+<!--bookshop-live name(social-link.jekyll.html) params() context() -->
+
+<div class="social">
+  <ul class="social__list list-reset">
+    
+    <li class="social__item">
+      <a class="social__link" href="https://www.linkedin.com/in/youssef-khaled-mohamed/" target="_blank" rel="noopener" aria-label="linkedin icon"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://github.com/Youssef-KhaledMo" target="_blank" rel="noopener" aria-label="github icon"><i class="ion ion-logo-github"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://wa.me/201110958262" target="_blank" rel="noopener" aria-label="whatsapp icon"><i class="ion ion-logo-whatsapp"></i></a>
+    </li>
+    
+  </ul>
+</div>
+
+<!--bookshop-live end-->
+
+        <ul class="footer_nav list-reset">
+          
+          <li class="footer_nav__item">
+            <a href="/" class="footer_nav__link">Home</a>
+          </li>
+          
+          <li class="footer_nav__item">
+            <a href="/projects/" class="footer_nav__link">Projects</a>
+          </li>
+          
+          <li class="footer_nav__item">
+            <a href="/blog/" class="footer_nav__link">Blog</a>
+          </li>
+          
+          <li class="footer_nav__item">
+            <a href="/about/" class="footer_nav__link">About</a>
+          </li>
+          
+        </ul>
+
+        <div class="copyright"><p> 2021 &copy; <a href="/">Vonge</a>. Template by <a href="https://cloudcannon.com/">CloudCannon</a>.</p></div>
+
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- end footer -->
+
+    <script src="/js/scripts.js"></script>
+    <script src="/js/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Enhancing Predictive Models with Feature Selection Techniques</title>
+  <meta name='description' content='My personal portfolio website'>
+
+  <link rel="canonical" href="http://localhost:4000/blog/enhancing-predictive-models-with-feature-selection-techniques">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Enhancing Predictive Models with Feature Selection Techniques – Home">
+  <meta name="twitter:description" content="In machine learning, selecting the right features can significantly impact the performance of your model. This blog post walks through various feature selection techniques, using the Titanic dataset as an example. We’ll explore methods like Feature Importance with Random Forest, Permutation Importance, and Recursive Feature Elimination (RFE), followed by training models like Decision Tree, Random Forest, and AdaBoost.
+">
+  <meta name="twitter:image:src" content="http://localhost:4000/images/feature-selection.jpg">
+
+  <!-- Facebook OpenGraph -->
+  <meta property="og:title" content="Enhancing Predictive Models with Feature Selection Techniques – Home">
+  <meta property="og:description" content="In machine learning, selecting the right features can significantly impact the performance of your model. This blog post walks through various feature selection techniques, using the Titanic dataset as an example. We’ll explore methods like Feature Importance with Random Forest, Permutation Importance, and Recursive Feature Elimination (RFE), followed by training models like Decision Tree, Random Forest, and AdaBoost.
+">
+  <meta property="og:image" content="http://localhost:4000/images/feature-selection.jpg">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+
+  <!-- Ionicons -->
+  <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/main.css">
+</head>
+
+<body>
+
+    
+
+    <!-- begin header -->
+<header class="c-header">
+  <div class="container">
+    <div class="row">
+      <div class="c-header__inner">
+
+        <div class="logo">
+          <a class="logo__link" href="/">
+          
+            <img class="logo__image" src="/images/YK_Logo.png" alt="Home">
+          
+          </a>
+        </div>
+
+        <nav class="main-nav">
+          <div class="main-nav__box">
+
+            <div class="nav__icon-close">
+              <i class="ion ion-md-close"></i>
+            </div>
+
+            <div class="nav__title">Menu</div>
+
+              <ul class="nav__list list-reset">
+
+              
+                
+                <li class="nav__item">
+                  <a href="/" class="nav__link">Home</a>
+                </li>
+                
+              
+                
+                <li class="nav__item">
+                  <a href="/projects/" class="nav__link">Projects</a>
+                </li>
+                
+              
+                
+                <li class="nav__item">
+                  <a href="/blog/" class="nav__link">Blog</a>
+                </li>
+                
+              
+                
+                <li class="nav__item">
+                  <a href="/about/" class="nav__link">About</a>
+                </li>
+                
+              
+
+            </ul>
+          </div>
+
+          <!--bookshop-live meta(version="3.10.1" baseurl="" title="Vonge") -->
+<!--bookshop-live name(social-link.jekyll.html) params() context() -->
+
+<div class="social">
+  <ul class="social__list list-reset">
+    
+    <li class="social__item">
+      <a class="social__link" href="https://www.linkedin.com/in/youssef-khaled-mohamed/" target="_blank" rel="noopener" aria-label="linkedin icon"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://github.com/Youssef-KhaledMo" target="_blank" rel="noopener" aria-label="github icon"><i class="ion ion-logo-github"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://wa.me/201110958262" target="_blank" rel="noopener" aria-label="whatsapp icon"><i class="ion ion-logo-whatsapp"></i></a>
+    </li>
+    
+  </ul>
+</div>
+
+<!--bookshop-live end-->
+        </nav>
+
+        <div class="nav-button">
+          <i class="nav__icon nav__icon-menu ion ion-md-menu"></i>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</header>
+<!-- end header -->
+
+    <div class="post-top">
+  <div class="container">
+    <div class="row">
+
+      
+      <div class="col col-6 col-d-12">
+        <div class="post-image">
+          <img loading="lazy" src="/images/feature-selection.jpg" alt="Enhancing Predictive Models with Feature Selection Techniques">
+        </div>
+      </div>
+      
+
+      <div class="col col-6 col-d-12">
+        <div class="post__info">
+
+          
+          <div class="post-tags">
+            
+              <a href="/tag/machine learning" class="post-tags__tag">machine learning</a>
+            
+              <a href="/tag/feature selection" class="post-tags__tag">feature selection</a>
+            
+              <a href="/tag/data science" class="post-tags__tag">data science</a>
+            
+          </div>
+          
+
+
+          <h1 class="post__title">Enhancing Predictive Models with Feature Selection Techniques</h1>
+
+          <div class="post__meta">
+            <div class="post__author-image">
+              <img loading="lazy" src="/images/avatar.jpg" alt="Youssef Khaled">
+            </div>
+
+            <div class="post__meta-bottom">
+              <div class="post__author">Youssef Khaled</div>
+              <time class="post__date" datetime="2024-08-06T00:00:00+03:00">06 Aug 2024</time>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- begin post -->
+<div class="container animate">
+
+  <article class="post">
+
+    <div class="post__content">
+      <p>In machine learning, selecting the right features can significantly impact the performance of your model. This blog post walks through various feature selection techniques, using the Titanic dataset as an example. We’ll explore methods like Feature Importance with Random Forest, Permutation Importance, and Recursive Feature Elimination (RFE), followed by training models like Decision Tree, Random Forest, and AdaBoost.</p>
+
+<!-- ![Feature Selection](/images/feature-selection.jpg){: width="1200" height="900"} -->
+
+<h3 id="feature-selection-techniques">Feature Selection Techniques</h3>
+
+<h4 id="1-feature-importance-with-random-forest"><strong>1. Feature Importance with Random Forest</strong></h4>
+
+<p>One of the simplest ways to determine the significance of features is by using a Random Forest model. This model allows us to evaluate the importance of each feature based on how much they improve the model’s accuracy.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Train Random Forest model
+</span><span class="n">model</span> <span class="o">=</span> <span class="nc">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">model</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Feature importances
+</span><span class="n">feature_importances</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nc">Series</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="n">feature_importances_</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">X</span><span class="p">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">feature_importances</span><span class="p">.</span><span class="nf">nlargest</span><span class="p">(</span><span class="mi">10</span><span class="p">).</span><span class="nf">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="sh">'</span><span class="s">barh</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="sh">'</span><span class="s">Feature Importance</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h4 id="2-permutation-importance"><strong>2. Permutation Importance</strong></h4>
+
+<p>Permutation Importance measures the importance of a feature by observing how random shuffling of the feature impacts model accuracy. This method is model-agnostic and offers more nuanced insights.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.inspection</span> <span class="kn">import</span> <span class="n">permutation_importance</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="nf">permutation_importance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">n_repeats</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">sorted_idx</span> <span class="o">=</span> <span class="n">result</span><span class="p">.</span><span class="n">importances_mean</span><span class="p">.</span><span class="nf">argsort</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="nf">barh</span><span class="p">(</span><span class="n">X</span><span class="p">.</span><span class="n">columns</span><span class="p">[</span><span class="n">sorted_idx</span><span class="p">],</span> <span class="n">result</span><span class="p">.</span><span class="n">importances_mean</span><span class="p">[</span><span class="n">sorted_idx</span><span class="p">])</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">xlabel</span><span class="p">(</span><span class="sh">"</span><span class="s">Permutation Importance</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="sh">'</span><span class="s">Permutation Importance of Features</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h4 id="3-recursive-feature-elimination-rfe"><strong>3. Recursive Feature Elimination (RFE)</strong></h4>
+
+<p>RFE is a technique that recursively removes the least important features and builds a model using the remaining attributes. The goal is to select a subset of features that contribute most to the target variable.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.feature_selection</span> <span class="kn">import</span> <span class="n">RFE</span>
+
+<span class="n">rfe</span> <span class="o">=</span> <span class="nc">RFE</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">n_features_to_select</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">rfe</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">feature_ranking</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nc">Series</span><span class="p">(</span><span class="n">rfe</span><span class="p">.</span><span class="n">ranking_</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">X</span><span class="p">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">feature_ranking</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="sh">'</span><span class="s">barh</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="sh">'</span><span class="s">Feature Ranking by RFE</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h3 id="correlation-analysis">Correlation Analysis</h3>
+
+<p>Understanding the correlation between features and the target variable is crucial in feature selection. We’ll visualize the correlation matrix to identify the most impactful features.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">correlation_matrix</span> <span class="o">=</span> <span class="n">X</span><span class="p">.</span><span class="nf">corr</span><span class="p">()</span>
+<span class="n">sns</span><span class="p">.</span><span class="nf">heatmap</span><span class="p">(</span><span class="n">correlation_matrix</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="sh">'</span><span class="s">coolwarm</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="sh">'</span><span class="s">Correlation Matrix</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h3 id="modeling">Modeling</h3>
+
+<p>Once the key features are selected, it’s time to train our models. Here’s how we approach it:</p>
+
+<h4 id="1-decision-tree"><strong>1. Decision Tree</strong></h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+
+<span class="c1"># Train a Decision Tree model
+</span><span class="n">tree</span> <span class="o">=</span> <span class="nc">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">tree</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Evaluate the model
+</span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">tree</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Decision Tree Accuracy:</span><span class="sh">"</span><span class="p">,</span> <span class="nf">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h4 id="2-random-forest"><strong>2. Random Forest</strong></h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+
+<span class="c1"># Train a Random Forest model
+</span><span class="n">forest</span> <span class="o">=</span> <span class="nc">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">forest</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Evaluate the model
+</span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">forest</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Random Forest Accuracy:</span><span class="sh">"</span><span class="p">,</span> <span class="nf">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h4 id="3-adaboost"><strong>3. AdaBoost</strong></h4>
+
+<p>AdaBoost combines weak learners to create a strong classifier. We’ll use GridSearchCV to find the best parameters for our AdaBoost model.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">AdaBoostClassifier</span>
+<span class="kn">from</span> <span class="n">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="sh">'</span><span class="s">n_estimators</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">],</span>
+    <span class="sh">'</span><span class="s">learning_rate</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">grid_search</span> <span class="o">=</span> <span class="nc">GridSearchCV</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="nc">AdaBoostClassifier</span><span class="p">(),</span> <span class="n">param_grid</span><span class="o">=</span><span class="n">param_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="sh">'</span><span class="s">accuracy</span><span class="sh">'</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">grid_search</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Best parameters found: </span><span class="sh">"</span><span class="p">,</span> <span class="n">grid_search</span><span class="p">.</span><span class="n">best_params_</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Best accuracy found: </span><span class="sh">"</span><span class="p">,</span> <span class="n">grid_search</span><span class="p">.</span><span class="n">best_score_</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>Feature selection is a critical step in building efficient and accurate machine learning models. By using techniques like Feature Importance, Permutation Importance, and RFE, we can refine our models and improve their predictive power. The Titanic dataset offers a great starting point to explore these methods, and the same concepts can be applied to more complex datasets.</p>
+
+<p>For the complete code and detailed explanations, visit the <a href="https://github.com/Youssef-KhaledMo/Feature-Selection">GitHub repository</a>.</p>
+
+    </div>
+
+    <div class="post__share">
+  <div class="share__head">
+    <div class="share__title">Share this Post</div>
+  </div>
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__twitter"
+        href="https://twitter.com/intent/tweet?text=Enhancing%20Predictive%20Models%20with%20Feature%20Selection%20Techniques&url=http://localhost:4000/blog/enhancing-predictive-models-with-feature-selection-techniques"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__facebook"
+        href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/blog/enhancing-predictive-models-with-feature-selection-techniques"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=http://localhost:4000/blog/enhancing-predictive-models-with-feature-selection-techniques&amp;media=http://localhost:4000/images/feature-selection.jpg&amp;description=Enhancing%20Predictive%20Models%20with%20Feature%20Selection%20Techniques"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" rel="nofollow"><i class="ion ion-logo-pinterest"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/blog/enhancing-predictive-models-with-feature-selection-techniques&title=Enhancing%20Predictive%20Models%20with%20Feature%20Selection%20Techniques&summary=&source=Vonge"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
+  </ul>
+</div>
+
+  </article>
+</div>
+<!-- end post -->
+
+<div class="container">
+  <div class="row">
+    <div class="col col-10 col-d-12 push-d-0 push-1">
+      <div class="post__navigation animate">
+  
+
+  
+  <a class="post__next" href="/blog/regression-techniques-for-car-price-prediction">
+    <div class="next__box">
+      <span class="post__nav post__nav__next">Next post</span>
+      <h2 class="post__nav__title">Regression Techniques for Car Price Prediction</h2>
+    </div>
+    <div class="next__image">
+      <img loading="lazy" src="/images/car_price_analysis.jpg" alt="Enhancing Predictive Models with Feature Selection Techniques">
+    </div>
+  </a>
+  
+</div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!-- begin related posts -->
+<div class="container">
+  <section class="related-posts is-related animate">
+    <div class="row">
+      <div class="col col-12">
+        <div class="container__inner">
+          <div class="section__info">
+            <div class="section__head">
+              <h2 class="section__title">You may also like</h2>
+              <a class="section__link" href="/blog">
+                
+                
+                  
+                    <a href="/tags#machine learning" class="section__link related-tag">See all<span> machine learning</span> <i class="ion ion-md-arrow-forward"></i></a>
+                  
+                
+                  
+                
+                  
+                
+              
+              </a>
+            </div>
+          </div>
+          <div class="row">
+
+          
+            
+            
+      
+            
+      
+            
+
+              <div class="article col col-4 col-d-6 col-t-12">
+                <div class="article__inner">
+              
+                  
+                  <div class="image-wrap">
+                    <a class="article__image" href="/blog/regression-techniques-for-car-price-prediction">
+                      <img loading="lazy" src="/images/car_price_analysis.jpg" alt="Regression Techniques for Car Price Prediction">
+                    </a>
+                  </div>
+                  
+              
+                  <div class="article__content">
+              
+                    
+                    <div class="article-tags__box">
+                      
+                      <a href="/tag/machine learning" class="article__tag">machine learning</a>
+                      
+                      <a href="/tag/data science" class="article__tag">data science</a>
+                      
+                      <a href="/tag/regression" class="article__tag">regression</a>
+                      
+                    </div>
+                    
+              
+                    <h2 class="article__title">
+                      <a href="/blog/regression-techniques-for-car-price-prediction">Regression Techniques for Car Price Prediction</a>
+                    </h2>
+              
+                    <p class="article__excerpt">
+                      In this post, we'll dive into the process of analyzing and predicting car prices using machine learning techniques. W...
+                    </p>
+              
+                    <div class="article__meta">
+                      <div class="article__author-image">
+                        <img loading="lazy" src="/images/avatar.jpg" alt="Youssef Khaled">
+                      </div>
+                      <div class="article-info">
+                        <div class="article__author-name">Youssef Khaled</div>
+                        <span class="article__date"><time datetime="2024-08-11T00:00:00+03:00">11 Aug 2024</time></span>
+                      </div>
+                    </div>
+              
+                  </div>
+                </div>
+              </div>
+
+            
+                
+              
+            
+            
+            
+      
+            
+      
+            
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- end related posts -->
+
+
+
+
+<!--bookshop-live meta(version="3.10.1" baseurl="" title="Vonge") -->
+<!--bookshop-live name(newsletter/newsletter.jekyll.html) params(newsletter_title=site.data.newsletter.newsletter_title
+  newsletter_description=site.data.newsletter.newsletter_description
+  newsletter_identifier=site.data.newsletter.newsletter_identifier
+  newsletter_button=site.data.newsletter.newsletter_button) context() -->
+<!-- begin subscribe -->
+
+<section class="c-subscribe section">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+
+        <div class="c-subscribe__inner">
+          <div class="c-subscribe__info">
+            <h3 class="c-subscribe__title">Join my mailing list</h3>
+            <div class="c-subscribe__subtitle">
+              <span id="ityped"></span>
+            </div>
+          </div>
+
+          <form class="c-subscribe__form validate" action="//frnla.us6.list-manage.com/subscribe/post?u=6314d69a3f315af7ce3fb00a0&amp;id=3038727cc3"
+            method="POST" id="membedded-subscribe-form" name="membedded-subscribe-form" target="_blank" novalidate>
+            <label class="screen-reader-text" for="mce-EMAIL">Email address</label>
+            <input class="c-subscribe__form-email required email" id="mce-EMAIL" type="text" name="EMAIL" placeholder="Your email address">
+            <button class="c-button c-button--primary c-button--large" id="membedded-subscribe" type="submit" name="subscribe">Subscribe</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end subscribe -->
+
+<script>
+  var itype_text = ['Get inspiration, updates and, cool stuff!'];
+</script>
+<!--bookshop-live end-->
+
+    <!--
+        Bookshop components are accessed using the bookshop tag,
+        using the same syntax as the standard Jekyll include tag.
+    -->
+    <!--bookshop-live meta(version="3.10.1" baseurl="" title="Vonge") -->
+<!--bookshop-live name(page.jekyll.html) params(content_blocks=page.content_blocks page_theme=page.page_theme) context() -->
+
+<!--bookshop-live end-->
+
+    <div class="top" title="Top"><i class="ion ion-ios-arrow-up"></i></div>
+
+    <!-- begin footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+
+        <!--bookshop-live meta(version="3.10.1" baseurl="" title="Vonge") -->
+<!--bookshop-live name(social-link.jekyll.html) params() context() -->
+
+<div class="social">
+  <ul class="social__list list-reset">
+    
+    <li class="social__item">
+      <a class="social__link" href="https://www.linkedin.com/in/youssef-khaled-mohamed/" target="_blank" rel="noopener" aria-label="linkedin icon"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://github.com/Youssef-KhaledMo" target="_blank" rel="noopener" aria-label="github icon"><i class="ion ion-logo-github"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://wa.me/201110958262" target="_blank" rel="noopener" aria-label="whatsapp icon"><i class="ion ion-logo-whatsapp"></i></a>
+    </li>
+    
+  </ul>
+</div>
+
+<!--bookshop-live end-->
+
+        <ul class="footer_nav list-reset">
+          
+          <li class="footer_nav__item">
+            <a href="/" class="footer_nav__link">Home</a>
+          </li>
+          
+          <li class="footer_nav__item">
+            <a href="/projects/" class="footer_nav__link">Projects</a>
+          </li>
+          
+          <li class="footer_nav__item">
+            <a href="/blog/" class="footer_nav__link">Blog</a>
+          </li>
+          
+          <li class="footer_nav__item">
+            <a href="/about/" class="footer_nav__link">About</a>
+          </li>
+          
+        </ul>
+
+        <div class="copyright"><p> 2021 &copy; <a href="/">Vonge</a>. Template by <a href="https://cloudcannon.com/">CloudCannon</a>.</p></div>
+
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- end footer -->
+
+    <script src="/js/scripts.js"></script>
+    <script src="/js/common.js"></script>
+</body>
+</html>

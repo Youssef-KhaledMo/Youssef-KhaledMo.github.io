@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Car Price Prediction</title>
+  <meta name='description' content='My personal portfolio website'>
+
+  <link rel="canonical" href="http://localhost:4000/project/car-price-prediction">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Car Price Prediction – Home">
+  <meta name="twitter:description" content="In this project, we explore the process of analyzing and predicting car prices using machine learning techniques. The project covers data cleaning, feature selection, and the implementation of regression models, with the goal of accurately predicting car prices.
+">
+  <meta name="twitter:image:src" content="http://localhost:4000/images/car_price_analysis.jpg">
+
+  <!-- Facebook OpenGraph -->
+  <meta property="og:title" content="Car Price Prediction – Home">
+  <meta property="og:description" content="In this project, we explore the process of analyzing and predicting car prices using machine learning techniques. The project covers data cleaning, feature selection, and the implementation of regression models, with the goal of accurately predicting car prices.
+">
+  <meta property="og:image" content="http://localhost:4000/images/car_price_analysis.jpg">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+
+  <!-- Ionicons -->
+  <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/main.css">
+</head>
+
+<body>
+
+    
+
+    <!-- begin header -->
+<header class="c-header">
+  <div class="container">
+    <div class="row">
+      <div class="c-header__inner">
+
+        <div class="logo">
+          <a class="logo__link" href="/">
+          
+            <img class="logo__image" src="/images/YK_Logo.png" alt="Home">
+          
+          </a>
+        </div>
+
+        <nav class="main-nav">
+          <div class="main-nav__box">
+
+            <div class="nav__icon-close">
+              <i class="ion ion-md-close"></i>
+            </div>
+
+            <div class="nav__title">Menu</div>
+
+              <ul class="nav__list list-reset">
+
+              
+                
+                <li class="nav__item">
+                  <a href="/" class="nav__link">Home</a>
+                </li>
+                
+              
+                
+                <li class="nav__item">
+                  <a href="/projects/" class="nav__link">Projects</a>
+                </li>
+                
+              
+                
+                <li class="nav__item">
+                  <a href="/blog/" class="nav__link">Blog</a>
+                </li>
+                
+              
+                
+                <li class="nav__item">
+                  <a href="/about/" class="nav__link">About</a>
+                </li>
+                
+              
+
+            </ul>
+          </div>
+
+          <!--bookshop-live meta(version="3.10.1" baseurl="" title="Vonge") -->
+<!--bookshop-live name(social-link.jekyll.html) params() context() -->
+
+<div class="social">
+  <ul class="social__list list-reset">
+    
+    <li class="social__item">
+      <a class="social__link" href="https://www.linkedin.com/in/youssef-khaled-mohamed/" target="_blank" rel="noopener" aria-label="linkedin icon"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://github.com/Youssef-KhaledMo" target="_blank" rel="noopener" aria-label="github icon"><i class="ion ion-logo-github"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://wa.me/201110958262" target="_blank" rel="noopener" aria-label="whatsapp icon"><i class="ion ion-logo-whatsapp"></i></a>
+    </li>
+    
+  </ul>
+</div>
+
+<!--bookshop-live end-->
+        </nav>
+
+        <div class="nav-button">
+          <i class="nav__icon nav__icon-menu ion ion-md-menu"></i>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</header>
+<!-- end header -->
+
+    <div class="container">
+
+  <!--bookshop-live meta(version="3.10.1" baseurl="" title="Vonge") -->
+<!--bookshop-live name(page-heading/page-heading.jekyll.html) params(title=page.title description=page.subtitle) context() -->
+
+<div class="container">
+  <div class="c-page-heading">
+    <h1 class="c-page-heading__title">Car Price Prediction</h1>
+    
+      <p class="c-page-heading__description">Machine Learning Project</p>
+    
+  </div>
+</div>
+<!--bookshop-live end-->
+  
+  <!--bookshop-live meta(version="3.10.1" baseurl="" title="Vonge") -->
+<!--bookshop-live name(page-image/page-image.jekyll.html) params(image=page_image) context() -->
+
+<div class="container">
+  <div class="row">
+    <div class="col col-12">
+      <div class="c-page-image animate">
+        <img loading="lazy" src="/images/car_price_analysis.jpg" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+<!--bookshop-live end-->
+
+  <div class="page animate">
+    <p>In this project, we explore the process of analyzing and predicting car prices using machine learning techniques. The project covers data cleaning, feature selection, and the implementation of regression models, with the goal of accurately predicting car prices.</p>
+
+<!-- ![Correlation Matrix](/images/correlation_matrix.png){: width="1200" height="900"} -->
+
+<h3 id="data-cleaning-and-preprocessing">Data Cleaning and Preprocessing</h3>
+
+<p>The dataset is first cleaned by removing irrelevant columns, checking for duplicates, and preparing it for further analysis. This step ensures that the data is in the best possible shape for model training.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nf">read_csv</span><span class="p">(</span><span class="sh">'</span><span class="s">CarPrice_Assignment.csv</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">data</span><span class="p">.</span><span class="nf">drop</span><span class="p">([</span><span class="sh">'</span><span class="s">car_ID</span><span class="sh">'</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">data</span><span class="p">.</span><span class="nf">info</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h3 id="feature-selection">Feature Selection</h3>
+
+<p>Using correlation analysis and a Random Forest model, we identify the most influential features that affect car prices. This step helps in reducing the dimensionality of the dataset and focuses on the most relevant variables.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+<span class="kn">from</span> <span class="n">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">from</span> <span class="n">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="c1"># Preprocessing categorical features
+</span><span class="n">data_encoded</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="nf">copy</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">data</span><span class="p">.</span><span class="nf">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="sh">'</span><span class="s">object</span><span class="sh">'</span><span class="p">]).</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">data_encoded</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="nc">LabelEncoder</span><span class="p">().</span><span class="nf">fit_transform</span><span class="p">(</span><span class="n">data_encoded</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">data_encoded</span><span class="p">.</span><span class="nf">drop</span><span class="p">(</span><span class="sh">'</span><span class="s">price</span><span class="sh">'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data_encoded</span><span class="p">[</span><span class="sh">'</span><span class="s">price</span><span class="sh">'</span><span class="p">]</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="nf">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">rf</span> <span class="o">=</span> <span class="nc">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">rf</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">importances</span> <span class="o">=</span> <span class="n">rf</span><span class="p">.</span><span class="n">feature_importances_</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">X</span><span class="p">.</span><span class="n">columns</span>
+</code></pre></div></div>
+
+<p><img src="/images/feature_importance.png" alt="Feature Importance" width="1200" height="900" /></p>
+
+<h3 id="regression-models-linear-and-polynomial">Regression Models: Linear and Polynomial</h3>
+
+<p>We implement both linear and polynomial regression models to capture the relationship between the selected features and car prices. The models are evaluated based on Mean Squared Error (MSE) and R-squared values.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span> <span class="n">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="nc">LinearRegression</span><span class="p">()</span>
+<span class="n">model</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">mse</span> <span class="o">=</span> <span class="nf">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">r2</span> <span class="o">=</span> <span class="nf">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="visualizing-results">Visualizing Results</h3>
+
+<p>The results from the regression models are visualized to compare predicted vs actual car prices, providing insights into the model’s performance.</p>
+
+<p><img src="/images/actual_vs_predicted_lr.png" alt="Actual vs Predicted" width="1200" height="900" />
+<img src="/images/actual_vs_predicted_pr.png" alt="Actual vs Predicted" width="1200" height="900" /></p>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>This project demonstrates the application of feature selection and regression techniques in predicting car prices. The methods used ensure that the model is both accurate and interpretable, making it a valuable tool for real-world applications.</p>
+
+<p>For the complete code and further details, you can check out the <a href="https://github.com/Youssef-KhaledMo/Car-Price-Prediction">GitHub repository</a>.</p>
+
+  </div>
+
+  
+  <div class="project__navigation animate">
+    <a class="project__prev" href="/project/titanic-survivors-prediction">
+      <div class="project__box">
+        <span class="project__nav__info">Next Project</span>
+        <h2 class="project__nav__title">Titanic Survivors Prediction<i class="ion ion-md-arrow-round-forward arrow-right"></i></h2>
+      </div>
+    </a>
+  </div>
+  
+
+</div>
+
+<!--bookshop-live meta(version="3.10.1" baseurl="" title="Vonge") -->
+<!--bookshop-live name(newsletter/newsletter.jekyll.html) params(newsletter_title=site.data.newsletter.newsletter_title
+  newsletter_description=site.data.newsletter.newsletter_description
+  newsletter_identifier=site.data.newsletter.newsletter_identifier
+  newsletter_button=site.data.newsletter.newsletter_button) context() -->
+<!-- begin subscribe -->
+
+<section class="c-subscribe section">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+
+        <div class="c-subscribe__inner">
+          <div class="c-subscribe__info">
+            <h3 class="c-subscribe__title">Join my mailing list</h3>
+            <div class="c-subscribe__subtitle">
+              <span id="ityped"></span>
+            </div>
+          </div>
+
+          <form class="c-subscribe__form validate" action="//frnla.us6.list-manage.com/subscribe/post?u=6314d69a3f315af7ce3fb00a0&amp;id=3038727cc3"
+            method="POST" id="membedded-subscribe-form" name="membedded-subscribe-form" target="_blank" novalidate>
+            <label class="screen-reader-text" for="mce-EMAIL">Email address</label>
+            <input class="c-subscribe__form-email required email" id="mce-EMAIL" type="text" name="EMAIL" placeholder="Your email address">
+            <button class="c-button c-button--primary c-button--large" id="membedded-subscribe" type="submit" name="subscribe">Subscribe</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end subscribe -->
+
+<script>
+  var itype_text = ['Get inspiration, updates and, cool stuff!'];
+</script>
+<!--bookshop-live end-->
+
+    <!--
+        Bookshop components are accessed using the bookshop tag,
+        using the same syntax as the standard Jekyll include tag.
+    -->
+    <!--bookshop-live meta(version="3.10.1" baseurl="" title="Vonge") -->
+<!--bookshop-live name(page.jekyll.html) params(content_blocks=page.content_blocks page_theme=page.page_theme) context() -->
+
+<!--bookshop-live end-->
+
+    <div class="top" title="Top"><i class="ion ion-ios-arrow-up"></i></div>
+
+    <!-- begin footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+
+        <!--bookshop-live meta(version="3.10.1" baseurl="" title="Vonge") -->
+<!--bookshop-live name(social-link.jekyll.html) params() context() -->
+
+<div class="social">
+  <ul class="social__list list-reset">
+    
+    <li class="social__item">
+      <a class="social__link" href="https://www.linkedin.com/in/youssef-khaled-mohamed/" target="_blank" rel="noopener" aria-label="linkedin icon"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://github.com/Youssef-KhaledMo" target="_blank" rel="noopener" aria-label="github icon"><i class="ion ion-logo-github"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://wa.me/201110958262" target="_blank" rel="noopener" aria-label="whatsapp icon"><i class="ion ion-logo-whatsapp"></i></a>
+    </li>
+    
+  </ul>
+</div>
+
+<!--bookshop-live end-->
+
+        <ul class="footer_nav list-reset">
+          
+          <li class="footer_nav__item">
+            <a href="/" class="footer_nav__link">Home</a>
+          </li>
+          
+          <li class="footer_nav__item">
+            <a href="/projects/" class="footer_nav__link">Projects</a>
+          </li>
+          
+          <li class="footer_nav__item">
+            <a href="/blog/" class="footer_nav__link">Blog</a>
+          </li>
+          
+          <li class="footer_nav__item">
+            <a href="/about/" class="footer_nav__link">About</a>
+          </li>
+          
+        </ul>
+
+        <div class="copyright"><p> 2021 &copy; <a href="/">Vonge</a>. Template by <a href="https://cloudcannon.com/">CloudCannon</a>.</p></div>
+
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- end footer -->
+
+    <script src="/js/scripts.js"></script>
+    <script src="/js/common.js"></script>
+</body>
+</html>
