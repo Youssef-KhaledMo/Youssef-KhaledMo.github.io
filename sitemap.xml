@@ -2,23 +2,19 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://youssef-khaledmo.github.io/about/</loc>
-<lastmod>2024-08-31T18:00:00+03:00</lastmod>
+<lastmod>2024-08-31T18:32:35+03:00</lastmod>
 </url>
 <url>
 <loc>https://youssef-khaledmo.github.io/blog/</loc>
-<lastmod>2024-08-31T18:00:00+03:00</lastmod>
-</url>
-<url>
-<loc>https://youssef-khaledmo.github.io/elements/</loc>
-<lastmod>2024-08-31T18:00:00+03:00</lastmod>
+<lastmod>2024-08-31T18:32:35+03:00</lastmod>
 </url>
 <url>
 <loc>https://youssef-khaledmo.github.io/</loc>
-<lastmod>2024-08-31T18:00:00+03:00</lastmod>
+<lastmod>2024-08-31T18:32:35+03:00</lastmod>
 </url>
 <url>
 <loc>https://youssef-khaledmo.github.io/projects/</loc>
-<lastmod>2024-08-31T18:00:00+03:00</lastmod>
+<lastmod>2024-08-31T18:32:35+03:00</lastmod>
 </url>
 <url>
 <loc>https://youssef-khaledmo.github.io/blog/enhancing-predictive-models-with-feature-selection-techniques</loc>
@@ -44,9 +40,6 @@
 </url>
 <url>
 <loc>https://youssef-khaledmo.github.io/schemas/project.html</loc>
-</url>
-<url>
-<loc>https://youssef-khaledmo.github.io/schemas/testimonial.html</loc>
 </url>
 <url>
 <loc>https://youssef-khaledmo.github.io/tag/machine-learning.html</loc>
