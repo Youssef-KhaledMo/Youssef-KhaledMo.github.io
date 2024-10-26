@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Drowsiness Detection</title>
+  <meta name='description' content='My personal portfolio website'>
+
+  <link rel="canonical" href="https://youssef-khaledmo.github.io/project/drowsiness-detection">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Drowsiness Detection – Home">
+  <meta name="twitter:description" content="This project focuses on building a Drowsiness Detection System using deep learning and computer vision techniques. The system detects early signs of driver drowsiness by analyzing the state of the driver’s eyes in real-time, aiming to improve road safety by alerting drowsy drivers.
+">
+  <meta name="twitter:image:src" content="https://youssef-khaledmo.github.io/images/drowsiness_detection.jpg">
+
+  <!-- Facebook OpenGraph -->
+  <meta property="og:title" content="Drowsiness Detection – Home">
+  <meta property="og:description" content="This project focuses on building a Drowsiness Detection System using deep learning and computer vision techniques. The system detects early signs of driver drowsiness by analyzing the state of the driver’s eyes in real-time, aiming to improve road safety by alerting drowsy drivers.
+">
+  <meta property="og:image" content="https://youssef-khaledmo.github.io/images/drowsiness_detection.jpg">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+
+  <!-- Ionicons -->
+  <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/main.css">
+</head>
+
+<body>
+
+    
+
+    <!-- begin header -->
+<header class="c-header">
+  <div class="container">
+    <div class="row">
+      <div class="c-header__inner">
+
+        <div class="logo">
+          <a class="logo__link" href="/">
+          
+            <img class="logo__image" src="/images/YK_Logo.png" alt="Home">
+          
+          </a>
+        </div>
+
+        <nav class="main-nav">
+          <div class="main-nav__box">
+
+            <div class="nav__icon-close">
+              <i class="ion ion-md-close"></i>
+            </div>
+
+            <div class="nav__title">Menu</div>
+
+              <ul class="nav__list list-reset">
+
+              
+                
+                <li class="nav__item">
+                  <a href="/" class="nav__link">Home</a>
+                </li>
+                
+              
+                
+                <li class="nav__item">
+                  <a href="/projects/" class="nav__link">Projects</a>
+                </li>
+                
+              
+                
+                <li class="nav__item">
+                  <a href="/blog/" class="nav__link">Blog</a>
+                </li>
+                
+              
+                
+                <li class="nav__item">
+                  <a href="/about/" class="nav__link">About</a>
+                </li>
+                
+              
+
+            </ul>
+          </div>
+
+          <!--bookshop-live meta(version="3.10.1" baseurl="" title="Youssef-KhaledMo") -->
+<!--bookshop-live name(social-link.jekyll.html) params() context() -->
+
+<div class="social">
+  <ul class="social__list list-reset">
+    
+    <li class="social__item">
+      <a class="social__link" href="https://www.linkedin.com/in/youssef-khaled-mohamed/" target="_blank" rel="noopener" aria-label="linkedin icon"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://github.com/Youssef-KhaledMo" target="_blank" rel="noopener" aria-label="github icon"><i class="ion ion-logo-github"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://wa.me/201110958262" target="_blank" rel="noopener" aria-label="whatsapp icon"><i class="ion ion-logo-whatsapp"></i></a>
+    </li>
+    
+  </ul>
+</div>
+
+<!--bookshop-live end-->
+        </nav>
+
+        <div class="nav-button">
+          <i class="nav__icon nav__icon-menu ion ion-md-menu"></i>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</header>
+<!-- end header -->
+
+    <div class="container">
+
+  <!--bookshop-live meta(version="3.10.1" baseurl="" title="Youssef-KhaledMo") -->
+<!--bookshop-live name(page-heading/page-heading.jekyll.html) params(title=page.title description=page.subtitle) context() -->
+
+<div class="container">
+  <div class="c-page-heading">
+    <h1 class="c-page-heading__title">Drowsiness Detection</h1>
+    
+      <p class="c-page-heading__description">Deep Learning Project</p>
+    
+  </div>
+</div>
+<!--bookshop-live end-->
+  
+  <!--bookshop-live meta(version="3.10.1" baseurl="" title="Youssef-KhaledMo") -->
+<!--bookshop-live name(page-image/page-image.jekyll.html) params(image=page_image) context() -->
+
+<div class="container">
+  <div class="row">
+    <div class="col col-12">
+      <div class="c-page-image animate">
+        <img loading="lazy" src="/images/drowsiness_detection.jpg" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+<!--bookshop-live end-->
+
+  <div class="page animate">
+    <p>This project focuses on building a <strong>Drowsiness Detection System</strong> using deep learning and computer vision techniques. The system detects early signs of driver drowsiness by analyzing the state of the driver’s eyes in real-time, aiming to improve road safety by alerting drowsy drivers.</p>
+
+<h3 id="problem-statement">Problem Statement</h3>
+<p>Drowsiness is one of the leading causes of road accidents worldwide. Detecting and alerting a drowsy driver on time can prevent potential accidents. This system uses a Convolutional Neural Network (CNN) to classify eye states (open or closed) and uses facial landmarks for precise eye region detection.</p>
+
+<h3 id="objectives">Objectives</h3>
+<ul>
+  <li>Detect whether the driver’s eyes are open or closed in real-time.</li>
+  <li>Alert the driver if both eyes are closed (indicating drowsiness).</li>
+  <li>Achieve high accuracy and precision to minimize false alerts.</li>
+</ul>
+
+<h3 id="solution-approach">Solution Approach</h3>
+<ol>
+  <li><strong>Preprocessing</strong>: Applied data augmentation techniques to enhance the model’s robustness using the <strong>ImageDataGenerator</strong> class. Techniques include rescaling, rotation, width shift, height shift, shearing, zooming, and horizontal flipping.</li>
+  <li><strong>Model Architecture</strong>: Designed a CNN-based model using Keras with three convolutional layers followed by max-pooling and dense layers. The model processes grayscale images of the driver’s eyes.</li>
+  <li><strong>Real-Time Eye Detection</strong>: Utilized the Dlib library’s facial landmarks to precisely locate the eyes in each video frame captured from the webcam.</li>
+  <li><strong>Prediction and Alert System</strong>: Used a <strong>binary classifier</strong> to predict if the driver’s eyes are open or closed. If both eyes are detected as closed, the system issues an alert sound.</li>
+</ol>
+
+<h3 id="dataset">Dataset</h3>
+<p>The project leverages the <strong>MRL Eye Dataset</strong>, which contains labeled images of eyes in different states (open or closed). The dataset was divided into training, validation, and testing sets.</p>
+
+<h3 id="model-implementation">Model Implementation</h3>
+<h4 id="data-augmentation">Data Augmentation</h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">train_datagen</span> <span class="o">=</span> <span class="nc">ImageDataGenerator</span><span class="p">(</span>
+    <span class="n">rescale</span><span class="o">=</span><span class="mf">1.</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span>
+    <span class="n">rotation_range</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+    <span class="n">width_shift_range</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">height_shift_range</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">shear_range</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">zoom_range</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">horizontal_flip</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">fill_mode</span><span class="o">=</span><span class="sh">'</span><span class="s">nearest</span><span class="sh">'</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Augmentation improved the model’s generalizability, allowing it to handle different angles and lighting conditions.</p>
+
+<h4 id="model-architecture">Model Architecture</h4>
+<p>The CNN model was defined as follows:</p>
+<ul>
+  <li><strong>Input Shape</strong>: (80, 80, 1) for grayscale images.</li>
+  <li><strong>Three Convolutional Layers</strong> with 32, 64, and 128 filters.</li>
+  <li><strong>MaxPooling Layers</strong> to down-sample the feature maps.</li>
+  <li><strong>Flatten Layer</strong> followed by Dense layers for binary classification (awake or drowsy).</li>
+  <li><strong>Output Layer</strong>: Sigmoid activation for binary classification.</li>
+</ul>
+
+<h4 id="model-compilation-and-training">Model Compilation and Training</h4>
+<p>The model was compiled using the <strong>Adam optimizer</strong> with a learning rate of 0.001. The loss function used was <strong>binary_crossentropy</strong>. Metrics such as accuracy, precision, and recall were tracked during training.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span><span class="p">.</span><span class="nf">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="nc">Adam</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.001</span><span class="p">),</span> 
+              <span class="n">loss</span><span class="o">=</span><span class="sh">'</span><span class="s">binary_crossentropy</span><span class="sh">'</span><span class="p">,</span> 
+              <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">metrics</span><span class="p">.</span><span class="nc">BinaryAccuracy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sh">'</span><span class="s">accuracy</span><span class="sh">'</span><span class="p">),</span>
+                       <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">metrics</span><span class="p">.</span><span class="nc">Precision</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sh">'</span><span class="s">precision</span><span class="sh">'</span><span class="p">),</span>
+                       <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">metrics</span><span class="p">.</span><span class="nc">Recall</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sh">'</span><span class="s">recall</span><span class="sh">'</span><span class="p">)])</span>
+</code></pre></div></div>
+
+<h3 id="evaluation-metrics">Evaluation Metrics</h3>
+<p>The model was evaluated on both training and testing datasets. The final evaluation yielded the following metrics:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Metric</th>
+      <th>Training Set</th>
+      <th>Testing Set</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Accuracy</td>
+      <td>0.98</td>
+      <td>0.95</td>
+    </tr>
+    <tr>
+      <td>Precision</td>
+      <td>0.97</td>
+      <td>0.94</td>
+    </tr>
+    <tr>
+      <td>Recall</td>
+      <td>0.96</td>
+      <td>0.93</td>
+    </tr>
+    <tr>
+      <td>Loss</td>
+      <td>0.10</td>
+      <td>0.15</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="real-time-detection-and-alerting">Real-Time Detection and Alerting</h3>
+<p>The system captures video input using a webcam, applies Dlib’s face detection and landmark identification, and extracts eye regions. These eye regions are preprocessed and fed into the trained CNN model for prediction. If both eyes are classified as closed, an <strong>auditory alert</strong> is triggered using the <strong>winsound</strong> module.</p>
+
+<h3 id="results-and-visualization">Results and Visualization</h3>
+<p>A comparative bar chart between training and testing metrics:</p>
+
+<p><img src="/images/Training_vs_Testing_Metrics.png" alt="Training vs Testing Metrics" /></p>
+
+<h3 id="key-features">Key Features</h3>
+<ul>
+  <li><strong>Real-Time Processing</strong>: Capable of detecting drowsiness in real-time.</li>
+  <li><strong>Auditory Alert</strong>: Issues an alarm sound when drowsiness is detected.</li>
+  <li><strong>High Precision</strong>: Reliable classification to minimize false positives and negatives.</li>
+</ul>
+
+<h3 id="demo">Demo</h3>
+<video width="720" height="405" controls="">
+  <source src="/images/Demo.mp4" type="video/mp4" />
+</video>
+
+<h3 id="conclusion">Conclusion</h3>
+<p>The Drowsiness Detection System leverages deep learning and computer vision to identify drowsiness and alert drivers in real-time. This system can be integrated into vehicles to enhance road safety and prevent accidents caused by drowsiness.</p>
+
+<p>For the complete code and further details, you can visit the <a href="https://github.com/Youssef-KhaledMo/Species-Classification-Project">GitHub repository</a>.</p>
+
+  </div>
+
+  
+  <div class="project__navigation animate">
+    <a class="project__prev" href="/project/leaf-species-classification">
+      <div class="project__box">
+        <span class="project__nav__info">Next Project</span>
+        <h2 class="project__nav__title">Leaf Species Classification<i class="ion ion-md-arrow-round-forward arrow-right"></i></h2>
+      </div>
+    </a>
+  </div>
+  
+
+</div>
+
+<!--bookshop-live meta(version="3.10.1" baseurl="" title="Youssef-KhaledMo") -->
+<!--bookshop-live name(contact-form/contact-form.jekyll.html) params(form_title=site.data.contact-form.form_title
+  form_description=site.data.contact-form.form_description
+  form_success_page=site.data.contact-form.form_success_page
+  form_submission_email=site.data.contact-form.form_submission_email
+  form_button_text=site.data.contact-form.form_button_text) context() -->
+<!-- begin contact -->
+
+<div class="c-contact-form" id="contact">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+
+        <div class="c-contact-form__form-box">
+          <div class="c-contact-form__contact-head">
+            <h2 class="c-contact-form__contact-title">Get in Touch</h2>
+            <p class="c-contact-form__contact-description">Interested in collaborating or have any questions? Reach out to me through this form.</p>
+          </div>
+          <form class="c-contact-form__form"
+            action="https://formspree.io/f/mzzpoqpo"
+            method="POST">
+            <input type="hidden" name="_to" value="yousefalmoqadem@gmail.com">
+            <div class="c-contact-form__form-group">
+              <label class="c-contact-form__form-label screen-reader-text" for="form-name">Your Name</label>
+              <input class="c-contact-form__form-input" id="form-name" type="text" name="name" placeholder="Your name..." required>
+            </div>
+            <div class="c-contact-form__form-group">
+              <label class="c-contact-form__form-label screen-reader-text" for="form-email">Your Email</label>
+              <input class="c-contact-form__form-input" id="form-email" type="email" name="_replyto" placeholder="Your email..."
+                required>
+            </div>
+            <div class="c-contact-form__form-group">
+              <label class="c-contact-form__form-label screen-reader-text" for="form-text">Your Message</label>
+              <textarea class="c-contact-form__form-input" id="form-text" name="text" rows="9" placeholder="Your message..."
+                required></textarea>
+            </div>
+            <div class="c-contact-form__form-group c-contact-form__form-group--button">
+              <button class="c-button c-button--primary c-button--large" type="submit">Send Now</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end contact -->
+<!--bookshop-live end-->
+
+
+    <!--
+        Bookshop components are accessed using the bookshop tag,
+        using the same syntax as the standard Jekyll include tag.
+    -->
+    <!--bookshop-live meta(version="3.10.1" baseurl="" title="Youssef-KhaledMo") -->
+<!--bookshop-live name(page.jekyll.html) params(content_blocks=page.content_blocks page_theme=page.page_theme) context() -->
+
+<!--bookshop-live end-->
+
+    <div class="top" title="Top"><i class="ion ion-ios-arrow-up"></i></div>
+
+    <!-- begin footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+
+        <!--bookshop-live meta(version="3.10.1" baseurl="" title="Youssef-KhaledMo") -->
+<!--bookshop-live name(social-link.jekyll.html) params() context() -->
+
+<div class="social">
+  <ul class="social__list list-reset">
+    
+    <li class="social__item">
+      <a class="social__link" href="https://www.linkedin.com/in/youssef-khaled-mohamed/" target="_blank" rel="noopener" aria-label="linkedin icon"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://github.com/Youssef-KhaledMo" target="_blank" rel="noopener" aria-label="github icon"><i class="ion ion-logo-github"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://wa.me/201110958262" target="_blank" rel="noopener" aria-label="whatsapp icon"><i class="ion ion-logo-whatsapp"></i></a>
+    </li>
+    
+  </ul>
+</div>
+
+<!--bookshop-live end-->
+
+        <ul class="footer_nav list-reset">
+          
+          <li class="footer_nav__item">
+            <a href="/" class="footer_nav__link">Home</a>
+          </li>
+          
+          <li class="footer_nav__item">
+            <a href="/projects/" class="footer_nav__link">Projects</a>
+          </li>
+          
+          <li class="footer_nav__item">
+            <a href="/blog/" class="footer_nav__link">Blog</a>
+          </li>
+          
+          <li class="footer_nav__item">
+            <a href="/about/" class="footer_nav__link">About</a>
+          </li>
+          
+        </ul>
+
+        <div class="copyright"><p> 2024 &copy; <a href="/">youssef-khaledmo.github.io</a>.</div>
+
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- end footer -->
+
+    <script src="/js/scripts.js"></script>
+    <script src="/js/common.js"></script>
+</body>
+</html>
