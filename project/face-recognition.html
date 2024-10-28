@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Real-Time Face Recognition System</title>
+  <meta name='description' content='My personal portfolio website'>
+
+  <link rel="canonical" href="https://youssef-khaledmo.github.io/project/face-recognition">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Real-Time Face Recognition System – Home">
+  <meta name="twitter:description" content="This project implements a real-time face recognition system using computer vision and deep learning techniques. The application identifies individuals based on a small dataset of three images and performs live video processing using a webcam. The purpose is to demonstrate the fundamentals of face recognition using pre-encoded face images.
+">
+  <meta name="twitter:image:src" content="https://youssef-khaledmo.github.io/images/face-recognition-thumbnail.jpg">
+
+  <!-- Facebook OpenGraph -->
+  <meta property="og:title" content="Real-Time Face Recognition System – Home">
+  <meta property="og:description" content="This project implements a real-time face recognition system using computer vision and deep learning techniques. The application identifies individuals based on a small dataset of three images and performs live video processing using a webcam. The purpose is to demonstrate the fundamentals of face recognition using pre-encoded face images.
+">
+  <meta property="og:image" content="https://youssef-khaledmo.github.io/images/face-recognition-thumbnail.jpg">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+
+  <!-- Ionicons -->
+  <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/main.css">
+</head>
+
+<body>
+
+    
+
+    <!-- begin header -->
+<header class="c-header">
+  <div class="container">
+    <div class="row">
+      <div class="c-header__inner">
+
+        <div class="logo">
+          <a class="logo__link" href="/">
+          
+            <img class="logo__image" src="/images/YK_Logo.png" alt="Home">
+          
+          </a>
+        </div>
+
+        <nav class="main-nav">
+          <div class="main-nav__box">
+
+            <div class="nav__icon-close">
+              <i class="ion ion-md-close"></i>
+            </div>
+
+            <div class="nav__title">Menu</div>
+
+              <ul class="nav__list list-reset">
+
+              
+                
+                <li class="nav__item">
+                  <a href="/" class="nav__link">Home</a>
+                </li>
+                
+              
+                
+                <li class="nav__item">
+                  <a href="/projects/" class="nav__link">Projects</a>
+                </li>
+                
+              
+                
+                <li class="nav__item">
+                  <a href="/blog/" class="nav__link">Blog</a>
+                </li>
+                
+              
+                
+                <li class="nav__item">
+                  <a href="/about/" class="nav__link">About</a>
+                </li>
+                
+              
+
+            </ul>
+          </div>
+
+          <!--bookshop-live meta(version="3.10.1" baseurl="" title="Youssef-KhaledMo") -->
+<!--bookshop-live name(social-link.jekyll.html) params() context() -->
+
+<div class="social">
+  <ul class="social__list list-reset">
+    
+    <li class="social__item">
+      <a class="social__link" href="https://www.linkedin.com/in/youssef-khaled-mohamed/" target="_blank" rel="noopener" aria-label="linkedin icon"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://github.com/Youssef-KhaledMo" target="_blank" rel="noopener" aria-label="github icon"><i class="ion ion-logo-github"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://wa.me/201110958262" target="_blank" rel="noopener" aria-label="whatsapp icon"><i class="ion ion-logo-whatsapp"></i></a>
+    </li>
+    
+  </ul>
+</div>
+
+<!--bookshop-live end-->
+        </nav>
+
+        <div class="nav-button">
+          <i class="nav__icon nav__icon-menu ion ion-md-menu"></i>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</header>
+<!-- end header -->
+
+    <div class="container">
+
+  <!--bookshop-live meta(version="3.10.1" baseurl="" title="Youssef-KhaledMo") -->
+<!--bookshop-live name(page-heading/page-heading.jekyll.html) params(title=page.title description=page.subtitle) context() -->
+
+<div class="container">
+  <div class="c-page-heading">
+    <h1 class="c-page-heading__title">Real-Time Face Recognition System</h1>
+    
+      <p class="c-page-heading__description">Computer Vision & Deep Learning Project</p>
+    
+  </div>
+</div>
+<!--bookshop-live end-->
+  
+  <!--bookshop-live meta(version="3.10.1" baseurl="" title="Youssef-KhaledMo") -->
+<!--bookshop-live name(page-image/page-image.jekyll.html) params(image=page_image) context() -->
+
+<div class="container">
+  <div class="row">
+    <div class="col col-12">
+      <div class="c-page-image animate">
+        <img loading="lazy" src="/images/face-recognition-thumbnail.jpg" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+<!--bookshop-live end-->
+
+  <div class="page animate">
+    <p>This project implements a real-time face recognition system using computer vision and deep learning techniques. The application identifies individuals based on a small dataset of three images and performs live video processing using a webcam. The purpose is to demonstrate the fundamentals of face recognition using pre-encoded face images.</p>
+
+<h3 id="project-features">Project Features</h3>
+<ul>
+  <li><strong>Real-Time Face Recognition:</strong> Captures live video feed from a webcam and processes each frame to detect and recognize faces.</li>
+  <li><strong>Simple, Small Dataset:</strong> The system is trained on only three images: an image of the project owner, Lionel Messi, and Cristiano Ronaldo. These images serve as the “authorized” dataset for recognition.</li>
+  <li><strong>Bounding Box and Label Display:</strong> Detected faces are highlighted with bounding boxes and labeled with the corresponding name or “Unknown” if the face is not recognized.</li>
+  <li><strong>Efficient Frame Processing:</strong> The system optimizes frame processing by reducing the image size and skipping alternate frames to balance performance and speed.</li>
+</ul>
+
+<h3 id="technical-details">Technical Details</h3>
+<ul>
+  <li><strong>Technology Stack:</strong> Python, OpenCV, NumPy, and the <code class="language-plaintext highlighter-rouge">face_recognition</code> library (built on dlib).</li>
+  <li><strong>Face Encoding:</strong> Each image is pre-processed to generate a unique numerical face encoding, which is stored for later comparison.</li>
+  <li><strong>Face Matching:</strong> During real-time processing, detected faces are matched with the stored encodings based on a distance threshold. If the distance is within the threshold, the face is considered a match.</li>
+  <li><strong>Display:</strong> Uses OpenCV to draw bounding boxes around detected faces and labels them with the identified name.</li>
+</ul>
+
+<h3 id="how-it-works">How It Works</h3>
+<ol>
+  <li><strong>Image Preprocessing:</strong> The system reads the known images, extracts facial features, and encodes them into numerical vectors. For this project, the dataset consists of the following images:
+    <ul>
+      <li><strong>My Image</strong></li>
+      <li><strong>Lionel Messi’s Image</strong></li>
+      <li><strong>Cristiano Ronaldo’s Image</strong></li>
+    </ul>
+
+    <p>These encodings serve as a reference for recognizing faces in the webcam feed.</p>
+  </li>
+  <li>
+    <p><strong>Real-Time Face Detection:</strong> The application captures video frames from the webcam and scales them down to speed up processing. It converts the frames to RGB format for the face recognition library.</p>
+  </li>
+  <li><strong>Face Recognition:</strong> For each frame:
+    <ul>
+      <li><strong>Face Locations</strong> are detected.</li>
+      <li><strong>Face Encodings</strong> are generated for the detected faces.</li>
+      <li>The system compares the detected face encodings with the known encodings and calculates the distance.</li>
+      <li>If a match is found (i.e., the distance is below a defined threshold), it displays the person’s name (e.g., “Messi” or “Ronaldo”). Otherwise, it labels the face as “Unknown.”</li>
+    </ul>
+  </li>
+  <li><strong>Output Display:</strong> Bounding boxes and labels are drawn around the recognized faces in real-time. This allows users to visually confirm the recognition results on their screen.</li>
+</ol>
+
+<h3 id="demo">Demo</h3>
+<video width="720" height="405" controls="">
+  <source src="/images/face_recognition_Demo.mp4" type="video/mp4" />
+</video>
+
+<h3 id="conclusion">Conclusion</h3>
+<p>This project serves as a simple yet effective demonstration of face recognition using a small dataset. By focusing on a real-time application, it showcases the potential of computer vision and deep learning technologies in building intelligent recognition systems. Although trained on only three images, the system successfully distinguishes between authorized faces and unfamiliar faces.</p>
+
+<h3 id="future-improvements"><strong>Future Improvements</strong></h3>
+<ul>
+  <li><strong>Expand Dataset:</strong> Increase the number of known faces to improve the system’s utility and test its scalability.</li>
+  <li><strong>Fine-Tune the Model:</strong> Experiment with different distance thresholds to enhance recognition accuracy.</li>
+  <li><strong>Add Logging and Alert Features:</strong> Record recognized faces or notify users of unrecognized individuals.</li>
+</ul>
+
+<p>For the complete code and further details, you can visit the <a href="https://github.com/Youssef-KhaledMo/Face-Recognition">GitHub repository</a>.</p>
+
+  </div>
+
+  
+  <div class="project__navigation animate">
+    <a class="project__prev" href="/project/drowsiness-detection">
+      <div class="project__box">
+        <span class="project__nav__info">Next Project</span>
+        <h2 class="project__nav__title">Drowsiness Detection<i class="ion ion-md-arrow-round-forward arrow-right"></i></h2>
+      </div>
+    </a>
+  </div>
+  
+
+</div>
+
+<!--bookshop-live meta(version="3.10.1" baseurl="" title="Youssef-KhaledMo") -->
+<!--bookshop-live name(contact-form/contact-form.jekyll.html) params(form_title=site.data.contact-form.form_title
+  form_description=site.data.contact-form.form_description
+  form_success_page=site.data.contact-form.form_success_page
+  form_submission_email=site.data.contact-form.form_submission_email
+  form_button_text=site.data.contact-form.form_button_text) context() -->
+<!-- begin contact -->
+
+<div class="c-contact-form" id="contact">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+
+        <div class="c-contact-form__form-box">
+          <div class="c-contact-form__contact-head">
+            <h2 class="c-contact-form__contact-title">Get in Touch</h2>
+            <p class="c-contact-form__contact-description">Interested in collaborating or have any questions? Reach out to me through this form.</p>
+          </div>
+          <form class="c-contact-form__form"
+            action="https://formspree.io/f/mzzpoqpo"
+            method="POST">
+            <input type="hidden" name="_to" value="yousefalmoqadem@gmail.com">
+            <div class="c-contact-form__form-group">
+              <label class="c-contact-form__form-label screen-reader-text" for="form-name">Your Name</label>
+              <input class="c-contact-form__form-input" id="form-name" type="text" name="name" placeholder="Your name..." required>
+            </div>
+            <div class="c-contact-form__form-group">
+              <label class="c-contact-form__form-label screen-reader-text" for="form-email">Your Email</label>
+              <input class="c-contact-form__form-input" id="form-email" type="email" name="_replyto" placeholder="Your email..."
+                required>
+            </div>
+            <div class="c-contact-form__form-group">
+              <label class="c-contact-form__form-label screen-reader-text" for="form-text">Your Message</label>
+              <textarea class="c-contact-form__form-input" id="form-text" name="text" rows="9" placeholder="Your message..."
+                required></textarea>
+            </div>
+            <div class="c-contact-form__form-group c-contact-form__form-group--button">
+              <button class="c-button c-button--primary c-button--large" type="submit">Send Now</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end contact -->
+<!--bookshop-live end-->
+
+
+    <!--
+        Bookshop components are accessed using the bookshop tag,
+        using the same syntax as the standard Jekyll include tag.
+    -->
+    <!--bookshop-live meta(version="3.10.1" baseurl="" title="Youssef-KhaledMo") -->
+<!--bookshop-live name(page.jekyll.html) params(content_blocks=page.content_blocks page_theme=page.page_theme) context() -->
+
+<!--bookshop-live end-->
+
+    <div class="top" title="Top"><i class="ion ion-ios-arrow-up"></i></div>
+
+    <!-- begin footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+
+        <!--bookshop-live meta(version="3.10.1" baseurl="" title="Youssef-KhaledMo") -->
+<!--bookshop-live name(social-link.jekyll.html) params() context() -->
+
+<div class="social">
+  <ul class="social__list list-reset">
+    
+    <li class="social__item">
+      <a class="social__link" href="https://www.linkedin.com/in/youssef-khaled-mohamed/" target="_blank" rel="noopener" aria-label="linkedin icon"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://github.com/Youssef-KhaledMo" target="_blank" rel="noopener" aria-label="github icon"><i class="ion ion-logo-github"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://wa.me/201110958262" target="_blank" rel="noopener" aria-label="whatsapp icon"><i class="ion ion-logo-whatsapp"></i></a>
+    </li>
+    
+  </ul>
+</div>
+
+<!--bookshop-live end-->
+
+        <ul class="footer_nav list-reset">
+          
+          <li class="footer_nav__item">
+            <a href="/" class="footer_nav__link">Home</a>
+          </li>
+          
+          <li class="footer_nav__item">
+            <a href="/projects/" class="footer_nav__link">Projects</a>
+          </li>
+          
+          <li class="footer_nav__item">
+            <a href="/blog/" class="footer_nav__link">Blog</a>
+          </li>
+          
+          <li class="footer_nav__item">
+            <a href="/about/" class="footer_nav__link">About</a>
+          </li>
+          
+        </ul>
+
+        <div class="copyright"><p> 2024 &copy; <a href="/">youssef-khaledmo.github.io</a>.</div>
+
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- end footer -->
+
+    <script src="/js/scripts.js"></script>
+    <script src="/js/common.js"></script>
+</body>
+</html>
